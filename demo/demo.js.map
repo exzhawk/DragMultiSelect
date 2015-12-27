@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "demo.js",
+  "sourceRoot": "",
+  "sources": [
+    "demo.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,CAAA,CAAE,SAAA;AACA,QAAA;AAAA,SAAS,0BAAT;MACE,CAAA,CAAE,OAAF,CACA,CAAC,QADD,CACU,MADV,CAEA,CAAC,IAFD,CAEM,KAFN,CAGA,CAAC,QAHD,CAGU,CAAA,CAAE,YAAF,CAHV;AADF;WAMA,CAAA,CAAE,YAAF,CAAe,CAAC,eAAhB,CAAA;EAPA,CAAF;AAAA"
+}

@@ -1,0 +1,17 @@
+#container {
+  width: 800px;
+  height: 600px;
+  border: solid black 1px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start; }
+  #container .item {
+    width: 100px;
+    height: 100px;
+    border: solid red 1px;
+    margin: 0;
+    background-color: transparent; }
+  #container .selected {
+    background-color: blue; }
+
+/*# sourceMappingURL=demo.css.map */
