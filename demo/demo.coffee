@@ -1,8 +1,8 @@
 $ ->
-  for i in [0...20]
+  for i in [0...40]
     $("<div>")
     .addClass('item')
-    .html('233')
+    .html('小黄本')
     .appendTo($("#container"))
 
   $("#container").DragMultiSelect()

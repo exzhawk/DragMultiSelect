@@ -2,8 +2,8 @@
 (function() {
   $(function() {
     var i, j;
-    for (i = j = 0; j < 20; i = ++j) {
-      $("<div>").addClass('item').html('233').appendTo($("#container"));
+    for (i = j = 0; j < 40; i = ++j) {
+      $("<div>").addClass('item').html('小黄本').appendTo($("#container"));
     }
     return $("#container").DragMultiSelect();
   });
