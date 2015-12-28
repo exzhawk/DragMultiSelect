@@ -3,14 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.teal-red.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../js/DragMultiSelect.js"></script>
     <script type="text/javascript" src="demo.js"></script>
     <link rel="stylesheet" type="text/css" href="demo.css"/>
 </head>
 <body>
-<div id="container">
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="path">
+                    <label class="mdl-textfield__label" for="path">Input Path or Directly Click Go</label>
+                </div>
+            </form>
+            <button id="go" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                Go
+            </button>
+            <div class="mdl-layout-spacer"></div>
+            <span id="count" class="mdl-badge" data-badge="0">
+            <button id="delete" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                Delete
+            </button>
+ </span>
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div id="container">
 
+            </div>
+        </div>
+    </main>
 </div>
+
 </body>
 </html>
