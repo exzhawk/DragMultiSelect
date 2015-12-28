@@ -3,7 +3,7 @@
   $(function() {
     var i, j;
     for (i = j = 0; j < 40; i = ++j) {
-      $("<div>").addClass('item').html('小黄本').appendTo($("#container"));
+      $("<div>").addClass('item').html('bgm38').appendTo($("#container"));
     }
     return $("#container").DragMultiSelect();
   });
