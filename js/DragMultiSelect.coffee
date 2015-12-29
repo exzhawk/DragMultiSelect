@@ -3,7 +3,14 @@ $.fn.DragMultiSelect = ->
   selectedFlag = false
   startIndex = -1
   items_status = []
-  items = $(this).children()
+  $this=$(this)
+  items = $this.children()
+  triggerCount = ->
+    count = 0
+    for item in items
+      if $(item).hasClass("selected")
+        count += 1
+    $this.trigger("DragMultiSelectEvent", [count])
   items
   .on "mousedown touchstart", (event) ->
     event.preventDefault()
@@ -17,6 +24,7 @@ $.fn.DragMultiSelect = ->
     selectingFlag = false
     if items.index($(this)) == startIndex
       $(this).toggleClass("selected")
+    triggerCount()
   .on "mousemove touchmove", (event)->
     if selectingFlag
       endIndex = items.index($(this))
@@ -25,9 +33,5 @@ $.fn.DragMultiSelect = ->
           $(items[index]).toggleClass("selected", selectedFlag)
         else
           $(items[index]).toggleClass("selected", items_status[index])
-      count = 0
-      for item in items
-        if $(item).hasClass("selected")
-          count += 1
-      $(this).trigger("DragMultiSelectEvent", [count])
+    triggerCount()
   this
