@@ -20,12 +20,12 @@
         results.push(items_status[index] = $(item).hasClass("selected"));
       }
       return results;
-    }).on("mouseup touchmove", function(event) {
+    }).on("mouseup touchend", function(event) {
       selectingFlag = false;
       if (items.index($(this)) === startIndex) {
         return $(this).toggleClass("selected");
       }
-    }).on("mousemove touchend", function(event) {
+    }).on("mousemove touchmove", function(event) {
       var count, endIndex, i, index, item, j, len, ref;
       if (selectingFlag) {
         endIndex = items.index($(this));

@@ -13,11 +13,11 @@ $.fn.DragMultiSelect = ->
     startIndex = items.index($this)
     for item,index in items
       items_status[index] = $(item).hasClass("selected")
-  .on "mouseup touchmove", (event)->
+  .on "mouseup touchend", (event)->
     selectingFlag = false
     if items.index($(this)) == startIndex
       $(this).toggleClass("selected")
-  .on "mousemove touchend", (event)->
+  .on "mousemove touchmove", (event)->
     if selectingFlag
       endIndex = items.index($(this))
       for index in [0...items.length]
