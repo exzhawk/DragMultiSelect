@@ -22,19 +22,22 @@
       return $this.trigger("DragMultiSelectEvent", [count]);
     };
     items.on("mousedown touchstart", function(event) {
-      var i, index, item, len, results;
+      var item;
       event.preventDefault();
       movedFlag = false;
       selectingFlag = true;
       $this = $(this);
       selectedFlag = !$this.hasClass("selected");
       startIndex = items.index($this);
-      results = [];
-      for (index = i = 0, len = items.length; i < len; index = ++i) {
-        item = items[index];
-        results.push(items_status[index] = $(item).hasClass("selected"));
-      }
-      return results;
+      return items_status = (function() {
+        var i, len, results;
+        results = [];
+        for (i = 0, len = items.length; i < len; i++) {
+          item = items[i];
+          results.push($(item).hasClass("selected"));
+        }
+        return results;
+      })();
     }).on("mouseup touchend", function(event) {
       selectingFlag = false;
       if (!movedFlag && items.index($(this)) === startIndex) {
