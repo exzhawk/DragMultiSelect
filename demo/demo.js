@@ -36,16 +36,17 @@
       }
     });
     return $("#delete").on("click", function() {
-      var $item, item, j, len, ref, selection;
-      selection = [];
-      ref = $("#container").children();
-      for (j = 0, len = ref.length; j < len; j++) {
-        item = ref[j];
-        $item = $(item);
-        if ($item.hasClass("selected")) {
-          selection.push($item.attr("path"));
+      var item, selection;
+      selection = (function() {
+        var j, len, ref, results;
+        ref = $("#container .selected");
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          item = ref[j];
+          results.push($(item).attr("path"));
         }
-      }
+        return results;
+      })();
       return $.ajax({
         url: "/delete",
         data: {

@@ -28,11 +28,7 @@ $ ->
       refresh()
 
   $("#delete").on "click", ->
-    selection = []
-    for item in $("#container").children()
-      $item = $(item)
-      if $item.hasClass("selected")
-        selection.push($item.attr("path"))
+    selection = ($(item).attr("path") for item in $("#container .selected"))
     $.ajax
       url: "/delete"
       data:
