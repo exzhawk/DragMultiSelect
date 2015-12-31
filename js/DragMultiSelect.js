@@ -11,14 +11,18 @@
     $this = $(this);
     items = $this.children();
     triggerCount = function() {
-      var count, i, item, len;
-      count = 0;
-      for (i = 0, len = items.length; i < len; i++) {
-        item = items[i];
-        if ($(item).hasClass("selected")) {
-          count += 1;
+      var count, item;
+      count = ((function() {
+        var i, len, results;
+        results = [];
+        for (i = 0, len = items.length; i < len; i++) {
+          item = items[i];
+          if ($(item).hasClass("selected")) {
+            results.push(item);
+          }
         }
-      }
+        return results;
+      })()).length;
       return $this.trigger("DragMultiSelectEvent", [count]);
     };
     items.on("mousedown touchstart", function(event) {
@@ -51,7 +55,7 @@
       if (selectingFlag) {
         endIndex = items.index($(this));
         for (index = i = 0, ref = items.length; 0 <= ref ? i < ref : i > ref; index = 0 <= ref ? ++i : --i) {
-          if ((index <= endIndex && index >= startIndex) || (index >= endIndex && index <= startIndex)) {
+          if (((startIndex <= index && index <= endIndex)) || ((endIndex <= index && index <= startIndex))) {
             $(items[index]).toggleClass("selected", selectedFlag);
           } else {
             $(items[index]).toggleClass("selected", items_status[index]);
