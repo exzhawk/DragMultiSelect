@@ -61,9 +61,8 @@
     speed = 0;
     triggerBound = 200;
     autoScroll = function() {
-      var scrollDelay;
       $("main")[0].scrollTop += speed * 10;
-      return scrollDelay = setTimeout(autoScroll, 10);
+      return setTimeout(autoScroll, 10);
     };
     autoScroll();
     relativeSpeed = (function() {
@@ -88,7 +87,7 @@
       } else {
         return speed = 0;
       }
-    }).on("mouseout", function(event) {
+    }).on("mouseout", function() {
       return speed = 0;
     });
   });
