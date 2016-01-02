@@ -21,7 +21,7 @@ $.fn.DragMultiSelect = ->
     items_status = ($(item).hasClass "selected" for item in items)
   .on "mouseup touchend", (event)->
     selectingFlag = false
-    if not movedFlag and items.index($(this)) is startIndex
+    if not movedFlag and items.index($ this) is startIndex
       $(this).toggleClass "selected"
     movedFlag = false
     triggerCount()
