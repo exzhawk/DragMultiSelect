@@ -36,6 +36,11 @@ $ ->
       method: "POST"
       success: ->
         refresh()
+
+  $("#path-form").submit (event)->
+    $("#go").click()
+    event.preventDefault();
+    
   speed = 0
   triggerBound = 200
   autoScroll = ->

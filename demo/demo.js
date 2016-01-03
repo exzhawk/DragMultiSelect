@@ -58,6 +58,10 @@
         }
       });
     });
+    $("#path-form").submit(function(event) {
+      $("#go").click();
+      return event.preventDefault();
+    });
     speed = 0;
     triggerBound = 200;
     autoScroll = function() {
