@@ -10,7 +10,7 @@ from send2trash import send2trash
 
 app = Flask(__name__)
 file_filter = re.compile(r'.*\.(jpg|png|gif|jpeg|bmp)', re.IGNORECASE)
-size = 298, 298
+size = 305, 288
 cache_dir = r"H:\TEMP\pic_cache"
 
 
@@ -35,9 +35,9 @@ def get_file():
             f = StringIO()
             im = Image.open(path)
             im.thumbnail(size, Image.BILINEAR)
-            im.save(f, "JPEG")
+            im.save(f)
             f.seek(0)
-            return send_file(f, mimetype="image/jpg")
+            return send_file(f)
         else:
             return send_file(path)
 
@@ -52,10 +52,14 @@ def delete_file():
             print("ERROR %s" % f)
     return "deleted"
 
-
 @app.route('/')
 def index_page():
     return send_file(app.root_path + "\\..\\demo\\demo.html")
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_file(app.root_path + "\\..\\demo\\favicon.ico")
 
 
 @app.route('/<path:path>')
