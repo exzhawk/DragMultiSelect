@@ -52,6 +52,7 @@ def delete_file():
             print("ERROR %s" % f)
     return "deleted"
 
+
 @app.route('/')
 def index_page():
     return send_file(app.root_path + "\\..\\demo\\demo.html")
