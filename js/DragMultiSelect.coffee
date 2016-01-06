@@ -7,9 +7,11 @@ $.fn.DragMultiSelect = ->
   items_status = []
   $this = $(this)
   items = $this.children()
+
   triggerCount = ->
     count = (item for item in items when $(item).hasClass "selected").length
     $this.trigger "DragMultiSelectEvent", [count]
+
   items
   .on "mousedown touchstart", (event) ->
     event.preventDefault()
@@ -37,4 +39,16 @@ $.fn.DragMultiSelect = ->
     if lastIndex isnt endIndex
       triggerCount()
       lastIndex = endIndex
+
+  toggleAll = (toOption) ->
+    for item in items
+      $(item).toggleClass "selected", toOption
+    triggerCount()
+
+  this.SelectAll = ->
+    toggleAll(true)
+  this.DeselectAll = ->
+    toggleAll(false)
+  this.SelectReserve = ->
+    toggleAll(undefined)
   this

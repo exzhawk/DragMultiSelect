@@ -1,4 +1,11 @@
 $ ->
+  dragMultiSelect = null
+  initDragMultiSelect = ->
+    dragMultiSelect = $("#container").DragMultiSelect()
+    dragMultiSelect.on "DragMultiSelectEvent", (event, count)->
+      $("#count").attr("data-badge", count)
+
+
   refresh = ->
     $.getJSON "/browse", path: $("#path").val(), (data) ->
       $container = $("#container")
@@ -11,9 +18,7 @@ $ ->
         .css("background-image", "url(/file?path=" + e + ")")
         .appendTo($container)
       $("#count").attr("data-badge", 0)
-      dragMultiSelect = $("#container").DragMultiSelect()
-      dragMultiSelect.on "DragMultiSelectEvent", (event, count)->
-        $("#count").attr("data-badge", count)
+      initDragMultiSelect()
 
   $("#go").on "click", ->
     if $("#path").val() == ""
@@ -21,9 +26,7 @@ $ ->
         $("<div>")
         .addClass('item')
         .appendTo($("#container"))
-      dragMultiSelect = $("#container").DragMultiSelect()
-      dragMultiSelect.on "DragMultiSelectEvent", (event, count)->
-        $("#count").attr("data-badge", count)
+      initDragMultiSelect()
     else
       refresh()
 
@@ -37,10 +40,18 @@ $ ->
       success: ->
         refresh()
 
+  $("#selectAll").on "click", ->
+    dragMultiSelect.SelectAll()
+  $("#deselectAll").on "click", ->
+    dragMultiSelect.DeselectAll()
+  $("#selectReverse").on "click", ->
+    dragMultiSelect.SelectReserve()
+
+
   $("#path-form").submit (event)->
     $("#go").click()
     event.preventDefault();
-    
+
   speed = 0
   triggerBound = 200
   autoScroll = ->
