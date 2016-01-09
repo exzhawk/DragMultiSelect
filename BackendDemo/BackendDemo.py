@@ -29,13 +29,13 @@ def get_file():
     path = request.args.get('path')
     cache_path = os.path.join(cache_dir, urllib.quote(path.encode('utf8')))
     if os.path.isfile(cache_path):
-        return send_file(cache_path, mimetype="image/jpg")
+        return send_file(cache_path)
     else:
         if file_filter.match(path):
             f = StringIO()
             im = Image.open(path)
             im.thumbnail(size, Image.BILINEAR)
-            im.save(f)
+            im.save(f, format=im.format)
             f.seek(0)
             return send_file(f)
         else:
