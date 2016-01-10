@@ -20,9 +20,9 @@
       color: #ffffff;
       background-color: #B2DFDB;
       content: '\2610'; }
-    #container .item.selected {
+    #container .item.DragMultiSelect-selected {
       box-shadow: inset 0 0 0 5px #009688; }
-      #container .item.selected:before {
+      #container .item.DragMultiSelect-selected:before {
         background-color: #009688 !important;
         content: '\2714' !important; }
     #container .item span {

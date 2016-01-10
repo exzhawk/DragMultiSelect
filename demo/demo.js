@@ -40,7 +40,7 @@
       var item, selection;
       selection = (function() {
         var j, len, ref, results;
-        ref = $("#container .selected");
+        ref = $("#container .DragMultiSelect-selected");
         results = [];
         for (j = 0, len = ref.length; j < len; j++) {
           item = ref[j];

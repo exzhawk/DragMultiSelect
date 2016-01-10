@@ -31,7 +31,7 @@ $ ->
       refresh()
 
   $("#delete").on "click", ->
-    selection = ($(item).attr("path") for item in $("#container .selected"))
+    selection = ($(item).attr("path") for item in $("#container .DragMultiSelect-selected"))
     $.ajax
       url: "/delete"
       data:

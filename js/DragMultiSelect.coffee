@@ -10,7 +10,7 @@ do($ = window.jQuery, window) ->
     items = $this.children()
 
     triggerCount = ->
-      count = (item for item in items when $(item).hasClass "selected").length
+      count = (item for item in items when $(item).hasClass "DragMultiSelect-selected").length
       $this.trigger "DragMultiSelectEvent", [count]
 
     items
@@ -19,13 +19,13 @@ do($ = window.jQuery, window) ->
       movedFlag = false
       selectingFlag = true
       $this = $(this)
-      selectedFlag = !$this.hasClass "selected"
+      selectedFlag = !$this.hasClass "DragMultiSelect-selected"
       startIndex = items.index $this
-      items_status = ($(item).hasClass "selected" for item in items)
+      items_status = ($(item).hasClass "DragMultiSelect-selected" for item in items)
     .on "mouseup touchend", (event)->
       selectingFlag = false
       if not movedFlag and items.index($ this) is startIndex
-        $(this).toggleClass "selected"
+        $(this).toggleClass "DragMultiSelect-selected"
       movedFlag = false
       triggerCount()
     .on "mousemove touchmove", (event)->
@@ -34,16 +34,16 @@ do($ = window.jQuery, window) ->
         endIndex = items.index $(this)
         for index in [0...items.length]
           if (startIndex <= index <= endIndex) or (endIndex <= index <= startIndex)
-            $(items[index]).toggleClass "selected", selectedFlag
+            $(items[index]).toggleClass "DragMultiSelect-selected", selectedFlag
           else
-            $(items[index]).toggleClass "selected", items_status[index]
+            $(items[index]).toggleClass "DragMultiSelect-selected", items_status[index]
       if lastIndex isnt endIndex
         triggerCount()
         lastIndex = endIndex
 
     toggleAll = (toOption) ->
       for item in items
-        $(item).toggleClass "selected", toOption
+        $(item).toggleClass "DragMultiSelect-selected", toOption
       triggerCount()
 
     this.SelectAll = ->

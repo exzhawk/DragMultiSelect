@@ -18,7 +18,7 @@
           results = [];
           for (i = 0, len = items.length; i < len; i++) {
             item = items[i];
-            if ($(item).hasClass("selected")) {
+            if ($(item).hasClass("DragMultiSelect-selected")) {
               results.push(item);
             }
           }
@@ -32,21 +32,21 @@
         movedFlag = false;
         selectingFlag = true;
         $this = $(this);
-        selectedFlag = !$this.hasClass("selected");
+        selectedFlag = !$this.hasClass("DragMultiSelect-selected");
         startIndex = items.index($this);
         return items_status = (function() {
           var i, len, results;
           results = [];
           for (i = 0, len = items.length; i < len; i++) {
             item = items[i];
-            results.push($(item).hasClass("selected"));
+            results.push($(item).hasClass("DragMultiSelect-selected"));
           }
           return results;
         })();
       }).on("mouseup touchend", function(event) {
         selectingFlag = false;
         if (!movedFlag && items.index($(this)) === startIndex) {
-          $(this).toggleClass("selected");
+          $(this).toggleClass("DragMultiSelect-selected");
         }
         movedFlag = false;
         return triggerCount();
@@ -57,9 +57,9 @@
           endIndex = items.index($(this));
           for (index = i = 0, ref = items.length; 0 <= ref ? i < ref : i > ref; index = 0 <= ref ? ++i : --i) {
             if (((startIndex <= index && index <= endIndex)) || ((endIndex <= index && index <= startIndex))) {
-              $(items[index]).toggleClass("selected", selectedFlag);
+              $(items[index]).toggleClass("DragMultiSelect-selected", selectedFlag);
             } else {
-              $(items[index]).toggleClass("selected", items_status[index]);
+              $(items[index]).toggleClass("DragMultiSelect-selected", items_status[index]);
             }
           }
         }
@@ -72,7 +72,7 @@
         var i, item, len;
         for (i = 0, len = items.length; i < len; i++) {
           item = items[i];
-          $(item).toggleClass("selected", toOption);
+          $(item).toggleClass("DragMultiSelect-selected", toOption);
         }
         return triggerCount();
       };

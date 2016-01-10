@@ -29,7 +29,7 @@ $limeColor: #B2DFDB;
       background-color: $limeColor;
       content: '\2610';
     }
-    &.selected {
+    &.DragMultiSelect-selected {
       //border: solid 5px $deepColor;
       box-shadow: inset 0 0 0 5px $deepColor;
       &:before {
