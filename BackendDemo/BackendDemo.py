@@ -1,17 +1,13 @@
 import json
 import os
-import re
 import urllib
-from cStringIO import StringIO
 
-from PIL import Image
 from flask import Flask, request, send_from_directory, send_file
 from send2trash import send2trash
 
+from make_thumb import file_filter, cache_dir, make_thumb
+
 app = Flask(__name__)
-file_filter = re.compile(r'.*\.(jpg|png|gif|jpeg|bmp)', re.IGNORECASE)
-size = 305, 288
-cache_dir = r"H:\TEMP\pic_cache"
 
 
 @app.route('/browse', methods=['GET'])
@@ -27,19 +23,12 @@ def browse_file():
 @app.route('/file', methods=['GET'])
 def get_file():
     path = request.args.get('path')
-    cache_path = os.path.join(cache_dir, urllib.quote(path.encode('utf8')))
-    if os.path.isfile(cache_path):
-        return send_file(cache_path)
+    thumb_result = make_thumb(path)
+    if thumb_result is 1:
+        return send_file(path)
     else:
-        if file_filter.match(path):
-            f = StringIO()
-            im = Image.open(path)
-            im.thumbnail(size, Image.BILINEAR)
-            im.save(f, format=im.format)
-            f.seek(0)
-            return send_file(f)
-        else:
-            return send_file(path)
+        cache_path = os.path.join(cache_dir, urllib.quote(path.encode('utf8')))
+        return send_file(cache_path)
 
 
 @app.route('/delete', methods=['POST'])
