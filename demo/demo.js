@@ -19,7 +19,7 @@
         for (j = 0, len = data.length; j < len; j++) {
           i = data[j];
           e = encodeURIComponent(i);
-          $("<div>").addClass('item').attr("path", i).css("background-image", "url(/file?path=" + e + ")").appendTo($container);
+          $("<div>").addClass('item').attr("path", i).css("background-image", "url('/file?path=" + e + "')").appendTo($container);
         }
         $("#count").attr("data-badge", 0);
         return initDragMultiSelect();

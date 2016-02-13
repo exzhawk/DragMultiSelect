@@ -15,7 +15,7 @@ $ ->
         $("<div>")
         .addClass('item')
         .attr("path", i)
-        .css("background-image", "url(/file?path=" + e + ")")
+        .css("background-image", "url('/file?path=" + e + "')")
         .appendTo($container)
       $("#count").attr("data-badge", 0)
       initDragMultiSelect()
@@ -29,7 +29,7 @@ $ ->
       initDragMultiSelect()
     else
       refresh()
-    $('main')[0].scrollTop=0
+    $('main')[0].scrollTop = 0
 
   $("#delete").on "click", ->
     selection = ($(item).attr("path") for item in $("#container .DragMultiSelect-selected"))
