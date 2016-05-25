@@ -42,7 +42,7 @@ def make_thumb(fi_path):
 
 if __name__ == '__main__':
     start_time = time.time()
-    pool = Pool(4)
+    pool = Pool(16)
     result = pool.map(make_thumb, get_files())
     pool.close()
     pool.join()
